@@ -1,0 +1,169 @@
+Ubuntu Stuff
+
+find / -type f -name "index.html"
+
+grep
+
+zcat /var/log/gp/locus-casino_django.log-20181012.gz | grep '111419263\|113972863\|114372724\|110931837\|113239664' > /home/gpadmin/152969-rs-p-ws1.json
+
+zcat /var/log/gp/locus-casino_django.log-20181012.gz | grep '111419263\|113972863\|114372724\|110931837\|113239664' > /home/gpadmin/test/logs.json
+
+
+Ansible Ad-Hocs.
+
+# ansible ws -i inventories/hosts_prod_resorts -m command -a 'zcat /var/log/gp/locus-casino_cms_django.log-20181012.gz' | grep sightline
+
+# ansible ws -i inventories/hosts_prod_resorts -m command -a 'zcat /var/log/gp/locus-casino_cms_django.log-20181012.gz'  | grep xxxxx
+
+# ansible ws -i inventories/hosts_prod_resorts -m command -a 'zcat /var/log/gp/locus-casino_cms_django.log-20181013.gz' | grep 'sightline' -i
+
+# ansible ws -i inventories/hosts_prod_resorts -m command -a 'zcat /var/log/gp/locus-casino_django.log-20181012.gz | grep '111419263\|113972863\|114372724\|110931837\|113239664' > /home/gpadmin/test/logs.json'
+
+# ansible ws -i hosts_prod_resorts -m file -a "src=home/anabhu/inventories/152969/ dest=/tmp/152969/" -vvv
+
+# ansible ws -i hosts_prod_resorts -m command -a 'sh /tmp/152969/grablogs.sh'
+
+# ansible all -i hosts_prod_resorts -m setup -a 'filter=ansible_distribution_version'
+
+# ansible ws -i hosts_prod_resorts -m command -a 'ls -l /tmp/152969'
+
+# ansible ws -i hosts_prod_resorts -m copy -a 'src=152969/grablogs.sh dest=/tmp/152969'
+
+# To copy the files from control server to hosts.
+# ansible ws -i hosts_prod_resorts -m copy -a 'src=152969/grablogs.sh dest=/tmp/152969'
+
+# ansible ws -i hosts_prod_resorts -m command -a 'sh /tmp/152969/grablogs.sh'
+
+# ansible ws -i hosts_prod_resorts -m command -a 'ls -a /tmp/152969/'
+
+# ansible ws -i hosts_prod_resorts -m command -a 'cat /tmp/152969/152969-rs-p-ws1.json'
+
+# ansible ws -i hosts_prod_resorts -m command -a "zgrep -E 'ReadTimeout: HTTPConnectionPoo.*deposit|deposit.*HTTPConnectionPoo" *_django_errors.log-201810* -c'
+
+# ansible ws -i hosts_prod_resorts -m command -a 'zgrep -E "ReadTimeout: HTTPConnectionPoo.*deposit|deposit.*HTTPConnectionPoo" /var/log/gp/locus-casino_django_errors.log-20181012.gz -c'
+
+# ansible ws -i inventories/hosts_prod_gn -m command -a 'zgrep --color=always nswga5b651kt5b7lnn3wqq0efbqmlz7r /var/log/gp/golden-nugget_django_errors.log-20180904.gz -c'
+
+
+SCP Commands
+
+# scp sightlinelog.txt 10.85.65.203:/Users/anandb/Desktop
+
+# scp portal-n.verginia.pem anabhu@10.251.2.20:/home/anabhu
+
+
+# sslscan https://nj-casino.goldennuggetcasino.com:443
+
+zcat /var/log/gp/locus-casino_django.log-20181012.gz | grep '111419263\|113972863\|114372724\|110931837\|113239664' > /home/gpadmin/test/logs.json
+
+
+Time Management
+
+Timedatectl list-timezones
+Timedatectl set-timezones
+
+Package Management
+
+The below command will list the service that are configures to run automatically after the system reboot.
+# systemctl list-unit files -at service
+
+# service --status-all
+
+# systemctl enable nginx
+
+
+To view the services actively running and enabled in Ubuntu 18.0
+# systemctl start nginx
+
+# systemctl enable nginx
+
+# systemctl list-unit-files | grep enabled
+
+# systemctl list-unit-files | grep nginx
+
+# systemctl list-unit-files -at service
+
+To disable the service to not to run after the system reboot.
+# systemctl disable apache2
+
+To know the specific service running status
+# service apache2 status
+
+To simply list the services installed by apt
+# apt list --installed
+
+# sudo pip list | grep packagename
+
+Systemctl cat rsyslog
+
+Systemctl ls -active apache2
+
+Systemctl mask apache2
+
+Systemctl unmask apache2
+
+The apt tool on Ubuntu 14.04 and above makes this very easy.
+apt list --installed
+
+Older Versions
+To get a list of packages installed locally do this in your terminal:
+dpkg --get-selections | grep -v deinstall
+(
+To get a list of a specific package installed:
+dpkg --get-selections | grep postgres
+
+To save that list to a text file called packages on your desktop do this in your terminal:
+dpkg --get-selections | grep -v deinstall > ~/Desktop/packages
+
+Alternatively, simply use
+dpkg -l
+(you don't need to run any of these commands as the superuser, so no sudo or any other variants necessary here)
+
+
+Network
+
+To list the installed packages running port number
+# netstat -tvlpn
+
+
+Networking Trouble Shooting
+
+# netstat
+
+# tcpdump
+
+# telnet
+
+Process and Job control
+
+# ps
+
+# top
+
+# htop
+# pstree
+
+Ps -e —forest
+
+Ps -u anabhu
+
+Pa -aux
+
+Kill the fore ground processes
+Ctrl + c 		Kill the fore ground processes
+
+Ctrl + z		Suspend the fore ground processes
+
+Cmd + &.		To play command in background.
+
+Kill
+
+Kill -l
+
+Kill
+
+Jobs from FG2BG
+bg%2(JobNummber)
+
+Jobs from BG2FG
+fg%2(JobNummber)
